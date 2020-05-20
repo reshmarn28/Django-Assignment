@@ -1,0 +1,49 @@
+    <!DOCTYPE html>  
+    <html lang="en">  
+    <head>  
+        <meta charset="UTF-8">  
+        <title>Product information</title>  
+         {% load static %}  
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/> 
+         
+    </head>  
+    <body>  
+    <a href="/" class="btn btn-primary">Home</a>
+    <form action="/search" method="get">
+        <input name="q" type="text" placeholder="Search...">
+    </form>
+    <table class="table table-striped table-bordered table-sm">  
+        <thead class="thead-dark">  
+        <tr>   
+            
+            <th> Name</th>  
+            <th> Weight</th>  
+            <th> Price</th>  
+            <th>Created_at</th> 
+            <th>Updated_at</th> 
+            <th>Actions</th>  
+        </tr>  
+        </thead>  
+        <tbody>  
+    {% for product in product %}  
+        <tr> 
+             
+            <td>{{ product.name }}</td>  
+            <td>{{ product.weight }}</td>  
+            <td>{{ product.price }}</td>  
+            <td>{{ product.created_at }}</td>  
+            <td>{{ product.updated_at }}</td>  
+            <td>  
+                <a href="/edit/{{ product.id }}"><span class="glyphicon glyphicon-pencil" >EDIT</span></a>
+                <a href="/delete/{{ product.id }}" onclick="return confirm('Do you really want to delete this?')">DELETE</a>
+                
+            </td>  
+        </tr>  
+    {% endfor %}  
+        </tbody>  
+    </table>  
+    <br>  
+    <br>  
+    <center><a href="/" class="btn btn-primary">Back</a></center>  
+    </body>  
+    </html>  
